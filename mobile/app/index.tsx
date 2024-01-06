@@ -4,6 +4,7 @@ import { StatusBar } from 'expo-status-bar'
 import Images from '../constants/Images'
 
 import { View } from '../components/Themed'
+import { CustomButton } from '../components/molecules/CustomButton'
 
 export default function IndexScreen() {
     return (
@@ -18,6 +19,22 @@ export default function IndexScreen() {
                 />
             </View>
 
+
+            <View
+                style={styles.actionsView}
+            >
+                <CustomButton
+                    variant="secondary"
+                    title="Log In"
+                />
+
+                <CustomButton
+                    variant="primary"
+                    title="Sign Up"
+                />
+
+            </View>
+                
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'dark'} />
         </>
     )
@@ -34,5 +51,9 @@ const styles = StyleSheet.create({
     welcomeIllustration: {
         width: 327,
         height: 500
+    },
+    actionsView: {
+        padding: 20,
+        flexDirection: 'column'
     }
 })
