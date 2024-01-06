@@ -1,5 +1,6 @@
 import { Platform, Text, StyleSheet, Image } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
+import { router } from 'expo-router'
 
 import Images from '../constants/Images'
 
@@ -25,7 +26,10 @@ export default function IndexScreen() {
             >
                 <CustomButton
                     variant="secondary"
-                    title="Log In"
+                    title="Home"
+                    onPress={() => {
+                        router.replace('/home')
+                    }}
                 />
 
                 <CustomButton
