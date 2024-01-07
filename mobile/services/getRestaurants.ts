@@ -1,9 +1,9 @@
 import { RemoteAPIs } from '../constants/RemoteAPIs'
-import { CategoryFromAPIResponse } from '../models/Category'
+import { RestaurantFromAPIResponse } from '../models/Restaurant'
 
-export async function getCategories(): Promise<CategoryFromAPIResponse[]> {
+export async function getRestaurants(): Promise<RestaurantFromAPIResponse[]> {
     return new Promise((resolve, reject) => {
-        const endpoint = '/food_categories'
+        const endpoint = '/stores'
 
         fetch(RemoteAPIs.apiCore.baseURL + endpoint)
             .then(response => response.json())
