@@ -1,24 +1,37 @@
-
-import { FlatList } from 'react-native'
+import { useState, useEffect } from 'react'
+import { FlatList, Alert } from 'react-native'
 import { CategoryBadge } from "../molecules/CategoryBadge";
+import { Category } from '../../models/Category'
+import { getCategories } from '../../services/getCategories';
 
 interface HorizontalCategoriesProps {}
 
 export function HorizontalCategories(props: HorizontalCategoriesProps) {
-    const categoriesMock = [
-        {
-            illustration: 'https://res.cloudinary.com/altos/image/upload/v1677696732/example-data/FoodOrderingApp/Categories/Vegan.png',
-            name: 'Vegan'
-        },
-        {
-            illustration: 'https://res.cloudinary.com/altos/image/upload/v1677696732/example-data/FoodOrderingApp/Categories/Meat.png',
-            name: 'Meat'
+    const [categories, setCategories] = useState<Category[]>([])
+    
+    async function didMount() {
+        try {
+            const getCategoriesResponse = await getCategories()
+
+            const categoriesResponse = getCategoriesResponse.map((category) => ({
+                id: category.id,
+                name: category.name,
+                illustration: category.url
+            }))
+
+            setCategories(categoriesResponse)
+        } catch (error) {
+            Alert.alert((error as Error).message)
         }
-    ]
+    }
+
+    useEffect(() => {
+        didMount()
+    }, [])
     
     return (
         <FlatList
-            data={categoriesMock}
+            data={categories}
             renderItem={({ item }) => (
                 <CategoryBadge
                     illustrationURI={item.illustration}
