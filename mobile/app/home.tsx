@@ -5,6 +5,7 @@ import Images from '../constants/Images';
 import { StatusBar } from 'expo-status-bar';
 import { SectionHeader } from '../components/molecules/SectionHeader';
 import { HorizontalCategories } from '../components/organisms/HorizontalCategories';
+import { RestaurantList } from '../components/organisms/RestaurantList';
 
 export default function HomeScreen() {
     return (
@@ -61,6 +62,18 @@ export default function HomeScreen() {
                     
                     <HorizontalCategories />
                 </View>
+
+                <View
+                    style={styles.recommendedContent}
+                >
+                    <SectionHeader
+                        action={() => {}}
+                        actionLabel="View all"
+                        title="Recommended"
+                    />
+
+                    <RestaurantList />
+                </View>
             </ScrollView>
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'dark'} />
         </>
@@ -111,5 +124,10 @@ const styles = StyleSheet.create({
     },
     topCategoriesContent: {
         flexDirection: 'column'
+    },
+    recommendedContent: {
+        flex: 1,
+        flexDirection: 'column',
+        paddingVertical: 16,
     }
 })
