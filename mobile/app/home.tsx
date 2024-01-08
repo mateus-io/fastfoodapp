@@ -6,6 +6,8 @@ import { StatusBar } from 'expo-status-bar';
 import { SectionHeader } from '../components/molecules/SectionHeader';
 import { HorizontalCategories } from '../components/organisms/HorizontalCategories';
 import { RestaurantList } from '../components/organisms/RestaurantList';
+import { CustomButton } from '../components/molecules/CustomButton';
+import { router } from 'expo-router';
 
 export default function HomeScreen() {
     return (
@@ -75,6 +77,19 @@ export default function HomeScreen() {
                     <RestaurantList />
                 </View>
             </ScrollView>
+            <CustomButton
+                title="Cadastrar Restaurante"
+                variant="primary"
+                style={{
+                    borderTopLeftRadius: 20,
+                    borderTopRightRadius: 20,
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                }}
+                onPress={() => {
+                    router.push('/storeRestaurant')
+                }}
+            />
             <StatusBar style={Platform.OS === 'ios' ? 'light' : 'dark'} />
         </>
     )
